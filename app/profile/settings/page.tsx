@@ -9,6 +9,9 @@ import { PrivacySettingsForm } from "@/components/profile/privacy-settings-form"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SignOutButton } from "@/components/profile/sign-out-button"
 
+// Forzar renderizado dinámico - la página usa cookies para autenticación
+export const dynamic = 'force-dynamic'
+
 export default async function SettingsPage() {
   const supabase = await createClient()
 

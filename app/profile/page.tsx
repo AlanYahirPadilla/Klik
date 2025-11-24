@@ -10,6 +10,9 @@ import { VerificationBadge } from "@/components/profile/verification-badge"
 import { ProfileAnalytics } from "@/components/profile/profile-analytics"
 import { ProfileMenuMobile } from "@/components/profile/profile-menu-mobile"
 
+// Forzar renderizado dinámico - la página usa cookies para autenticación
+export const dynamic = 'force-dynamic'
+
 export default async function ProfilePage() {
   const supabase = await createClient()
 

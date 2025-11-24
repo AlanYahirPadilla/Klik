@@ -6,6 +6,9 @@ import { AnimatedBackground } from "@/components/landing/animated-background"
 import { LandingHeader } from "@/components/landing/landing-header"
 import { LandingFooter } from "@/components/landing/landing-footer"
 
+// Forzar renderizado dinámico - la página usa cookies para obtener estadísticas
+export const dynamic = 'force-dynamic'
+
 async function getStats() {
   try {
     // Verificar que las variables de entorno estén disponibles

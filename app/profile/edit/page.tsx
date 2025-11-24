@@ -5,6 +5,10 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { EditProfileForm } from "@/components/profile/edit-profile-form"
+import { Suspense } from "react"
+
+// Forzar renderizado dinámico - la página usa cookies para autenticación
+export const dynamic = 'force-dynamic'
 
 export default async function EditProfilePage() {
   const supabase = await createClient()
