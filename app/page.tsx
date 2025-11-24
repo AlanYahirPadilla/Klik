@@ -8,6 +8,16 @@ import { LandingFooter } from "@/components/landing/landing-footer"
 
 async function getStats() {
   try {
+    // Verificar que las variables de entorno estén disponibles
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      // Durante el build, retornar valores por defecto
+      return {
+        users: 0,
+        posts: 0,
+        connections: 0,
+      }
+    }
+
     const supabase = await createClient()
     
     const [usersCount, postsCount, followsCount] = await Promise.all([
@@ -21,7 +31,10 @@ async function getStats() {
       posts: postsCount.count || 0,
       connections: followsCount.count || 0,
     }
-  } catch {
+  } catch (error) {
+    // Si hay cualquier error, retornar valores por defecto
+    // Esto permite que el build se complete incluso si hay problemas con Supabase
+    console.error("Error getting stats:", error)
     return {
       users: 0,
       posts: 0,

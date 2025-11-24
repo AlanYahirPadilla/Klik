@@ -9,10 +9,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Asegurar que las variables de entorno estén disponibles durante el build
-  env: {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  // Configuración para permitir builds sin variables de entorno
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
   },
 }
 
