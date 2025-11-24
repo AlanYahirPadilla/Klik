@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { AppLayout } from "@/components/layout/app-layout"
 import { SearchResults } from "@/components/search/search-results"
 import { SearchBar } from "@/components/search/search-bar"
+import { Suspense } from "react"
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string; type?: string }> }) {
   const params = await searchParams
@@ -24,11 +25,15 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       <div className="mx-auto max-w-2xl">
         <header className="sticky top-0 z-40 border-b border-border/40 bg-card/95 backdrop-blur-xl supports-[backdrop-filter]:bg-card/90 px-6 py-5">
           <h1 className="text-2xl font-bold tracking-tight mb-4">Búsqueda</h1>
-          <SearchBar initialQuery={query} />
+          <Suspense fallback={<div className="h-10 w-full bg-muted animate-pulse rounded" />}>
+            <SearchBar initialQuery={query} />
+          </Suspense>
         </header>
 
         {query ? (
-          <SearchResults query={query} type={type} currentUserId={user.id} />
+          <Suspense fallback={<div className="h-64 w-full bg-muted animate-pulse rounded mt-4" />}>
+            <SearchResults query={query} type={type} currentUserId={user.id} />
+          </Suspense>
         ) : (
           <div className="flex flex-col items-center justify-center py-20 px-6 text-center">
             <p className="text-lg font-semibold text-muted-foreground mb-2">Busca usuarios, posts y hashtags</p>

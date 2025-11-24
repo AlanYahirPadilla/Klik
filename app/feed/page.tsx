@@ -7,6 +7,7 @@ import { Home } from "lucide-react"
 import { FeedTabs } from "@/components/feed/feed-tabs"
 import { FeedListsSidebar } from "@/components/lists/feed-lists-sidebar"
 import { FeedHeaderMenu } from "@/components/feed/feed-header-menu"
+import { Suspense } from "react"
 
 export default async function FeedPage({ searchParams }: { searchParams: Promise<{ tab?: string; list?: string }> }) {
   const params = await searchParams
@@ -126,7 +127,9 @@ export default async function FeedPage({ searchParams }: { searchParams: Promise
                 <h1 className="text-2xl font-bold tracking-tight">Inicio</h1>
                 <FeedHeaderMenu />
               </div>
-              <FeedTabs activeTab={activeTab} selectedListId={selectedListId} />
+              <Suspense fallback={<div className="h-10 w-full bg-muted animate-pulse rounded" />}>
+                <FeedTabs activeTab={activeTab} />
+              </Suspense>
               {selectedListId && (
                 <div className="mt-3 text-sm text-muted-foreground">
                   Filtrando por lista seleccionada
@@ -176,7 +179,9 @@ export default async function FeedPage({ searchParams }: { searchParams: Promise
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-24">
               <div className="bg-card border border-border/40 rounded-lg p-4">
-                <FeedListsSidebar userId={user.id} />
+                <Suspense fallback={<div className="h-32 w-full bg-muted animate-pulse rounded" />}>
+                  <FeedListsSidebar userId={user.id} />
+                </Suspense>
               </div>
             </div>
           </aside>
