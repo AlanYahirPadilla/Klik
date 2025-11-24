@@ -13,6 +13,9 @@ import { VerificationBadge } from "@/components/profile/verification-badge"
 import { ProfileAnalytics } from "@/components/profile/profile-analytics"
 import { ProfileViewTracker } from "@/components/profile/profile-view-tracker"
 
+// Forzar renderizado dinámico - la página usa cookies y componentes con useRouter
+export const dynamic = 'force-dynamic'
+
 export default async function UserProfilePage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params
   const supabase = await createClient()

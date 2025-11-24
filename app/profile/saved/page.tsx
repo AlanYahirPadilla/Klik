@@ -6,6 +6,9 @@ import { ArrowLeft, Bookmark } from "lucide-react"
 import Link from "next/link"
 import { PostCard } from "@/components/feed/post-card"
 
+// Forzar renderizado dinámico - la página usa cookies para autenticación
+export const dynamic = 'force-dynamic'
+
 export default async function SavedPostsPage() {
   const supabase = await createClient()
 

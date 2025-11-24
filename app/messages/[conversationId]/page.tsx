@@ -3,6 +3,9 @@ import { redirect, notFound } from "next/navigation"
 import { AppLayout } from "@/components/layout/app-layout"
 import { ChatWindow } from "@/components/messages/chat-window"
 
+// Forzar renderizado dinámico - la página usa cookies para autenticación
+export const dynamic = 'force-dynamic'
+
 export default async function ChatPage({ params }: { params: Promise<{ conversationId: string }> }) {
   const { conversationId } = await params
   const supabase = await createClient()

@@ -4,6 +4,9 @@ import { redirect } from "next/navigation"
 import { NotificationsList } from "@/components/notifications/notifications-list"
 import { Bell } from "lucide-react"
 
+// Forzar renderizado dinámico - la página usa cookies para autenticación
+export const dynamic = 'force-dynamic'
+
 export default async function NotificationsPage() {
   const supabase = await createClient()
 
