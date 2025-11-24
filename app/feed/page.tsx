@@ -9,6 +9,9 @@ import { FeedListsSidebar } from "@/components/lists/feed-lists-sidebar"
 import { FeedHeaderMenu } from "@/components/feed/feed-header-menu"
 import { Suspense } from "react"
 
+// Forzar renderizado dinámico - el feed cambia constantemente y no debe ser estático
+export const dynamic = 'force-dynamic'
+
 export default async function FeedPage({ searchParams }: { searchParams: Promise<{ tab?: string; list?: string }> }) {
   const params = await searchParams
   const activeTab = params.tab === "following" ? "following" : "for-you"

@@ -5,6 +5,9 @@ import { SearchResults } from "@/components/search/search-results"
 import { SearchBar } from "@/components/search/search-bar"
 import { Suspense } from "react"
 
+// Forzar renderizado dinámico - la búsqueda depende de parámetros de URL dinámicos
+export const dynamic = 'force-dynamic'
+
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string; type?: string }> }) {
   const params = await searchParams
   const query = params.q || ""
